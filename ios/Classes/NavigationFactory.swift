@@ -414,6 +414,10 @@ extension NavigationFactory : NavigationViewControllerDelegate {
         }
     }
     
+    public func navigationViewController(_ navigationViewController: NavigationViewController, didRerouteFrom location: CLLocation) {
+        sendEvent(eventType: MapBoxEventType.user_off_route)
+    }
+
     public func navigationViewController(_ navigationViewController: NavigationViewController, didArriveAt waypoint: Waypoint) -> Bool {
         sendEvent(eventType: MapBoxEventType.on_arrival, data: "true")
         if(!_wayPoints.isEmpty && IsMultipleUniqueRoutes)
